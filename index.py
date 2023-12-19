@@ -212,6 +212,7 @@ def index():
 
 @app.route("/response", methods=["GET", "POST"])
 def response():
+    snippet = ""  # Initialize snippet with an empty string
 
     if request.method == "POST":
         snippet = request.form["fsnippet"]
