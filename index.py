@@ -27,6 +27,8 @@ from nrclex import NRCLex
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('vader_lexicon')
+nltk.download('punkt')
+
 from scipy.sparse import hstack
 
 def cleaning_text(text):
@@ -219,6 +221,7 @@ def response():
         emotion_labels = prediction['emotion'].columns.tolist()
         emotion_values = prediction['emotion'].values[0].tolist()
         emotion_data = {'labels': emotion_labels, 'values': emotion_values}
+        
 
     return render_template("response.html", result=predict(snippet),  emotion_data=emotion_data, string = snippet)
 
