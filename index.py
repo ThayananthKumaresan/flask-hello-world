@@ -168,12 +168,12 @@ def predict(text):
     features = prep(text)
     for personality_type in personality_types:
     # Load individual models
-        loaded_gb_model = joblib.load(f'models\{personality_type}_gb_model.joblib')
-        loaded_xgb_model = joblib.load(f'models\{personality_type}_xgb_model.joblib')
-        loaded_lgbm_model = joblib.load(f'models\{personality_type}_lgbm_model.joblib')
+        loaded_gb_model = joblib.load(f'models{personality_type}_gb_model.joblib')
+        loaded_xgb_model = joblib.load(f'models{personality_type}_xgb_model.joblib')
+        loaded_lgbm_model = joblib.load(f'models{personality_type}_lgbm_model.joblib')
 
         # Load meta-model
-        loaded_meta_model = joblib.load(f'models\{personality_type}_meta_model.joblib')
+        loaded_meta_model = joblib.load(f'models{personality_type}_meta_model.joblib')
 
         gb_sample_pred = loaded_gb_model.predict(features)
         xgb_sample_pred = loaded_xgb_model.predict(features)
@@ -221,7 +221,6 @@ def response():
         emotion_labels = prediction['emotion'].columns.tolist()
         emotion_values = prediction['emotion'].values[0].tolist()
         emotion_data = {'labels': emotion_labels, 'values': emotion_values}
-        
 
     return render_template("response.html", result=predict(snippet),  emotion_data=emotion_data, string = snippet)
 
