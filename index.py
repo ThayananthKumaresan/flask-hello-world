@@ -32,6 +32,7 @@ nltk.download('punkt')
 from scipy.sparse import hstack
 
 def cleaning_text(text):
+    print('Cleaning text...')
     # Remove links
     text = re.sub(r'https?:\/\/.*?[\s+]', '', text.replace("|", " ") + " ")
 
@@ -69,6 +70,8 @@ def cleaning_text(text):
 
 
 def extract_emotion(post):
+    print('extract_emotion...')
+    
     # Create an NRCLex object for the post
     text_object = NRCLex(post)
     
@@ -89,6 +92,8 @@ with open('word_tfidf_vectorizer.pkl', 'rb') as file:
 
 
 def extract_features_from_text(user_input):
+    print('extract_features_from_text...')
+    
     # 1. Word-level TF
     word_tf= word_tf_vectorizer.transform([user_input])
 
@@ -115,6 +120,8 @@ def extract_features_from_text(user_input):
 
 
 def prep (text):
+    print('prep...')
+
     text_cleaned= cleaning_text(text)
     extracted_features = extract_features_from_text(text_cleaned)
     return extracted_features
@@ -153,6 +160,7 @@ import joblib
 personality_types = ['E','N', 'T', 'J']
 
 def predict(text):
+    print('Predicting...')
 
     analyzer = SentimentIntensityAnalyzer()
     score = analyzer.polarity_scores(text)
@@ -166,6 +174,7 @@ def predict(text):
 
     pred=[]
     features = prep(text)
+    print('Going into model...')
     for personality_type in personality_types:
     # # Load individual models
     #     loaded_gb_model = joblib.load(f'{personality_type}_gb_model.joblib')
