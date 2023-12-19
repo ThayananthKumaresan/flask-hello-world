@@ -1,0 +1,271 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <title> Myers briggs personality predictor </title>
+    <!-- External CSS file -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Our own css files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <!-- Bootstrap CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700&display=swap">
+
+  </head>
+
+  <body>
+    <!-- This is the nav bar. Paste on every page at the top of the body-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">MBTI | PREDICTOR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/" style="font-size:1vw" >Home</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/explore" style="font-size:1vw" >Explore</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/methodology" style="font-size:1vw" >Methodology</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/documentation" style="font-size:1vw">Documentation</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about" style="font-size:1vw">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+	<section class="bgimage" style="cursor: pointer;" onclick="window.location.href='/'">
+		<div class="container-fluid">
+		  <div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			  <h1 class="font-weight-light" style="font-size: 3em;">Myers Briggs Personality Predictor</h1>
+			  <br />
+			</div>
+		  </div>
+		</div>
+	  </section>
+
+<!-- Welcome Section -->
+<section class="welcome-section">
+	<div class="container">
+	  <div class="row">
+		<div class="col-12 text-center">
+		  <h2 class="section-title">Welcome</h2>
+		  <hr class="section-divider" />
+		  <p class="section-text">Explore the fascinating world of Myers-Briggs personality types. Whether you're a seasoned enthusiast or a newcomer, discover more about yourself by sharing a post from your forum or a similar platform, and let us predict your Myers-Briggs personality type.</p>
+		  <p class="section-text">Dive into the journey of self-discovery and uncover the insights that Myers-Briggs personality types can offer.</p>
+		</div>
+	  </div>
+	</div>
+  </section>
+  
+  <!-- Instructions Section -->
+  <section class="instructions-section">
+	<div class="container">
+	  <div class="row">
+		<div class="col-12 text-center">
+		  <h2 class="section-title">How It Works</h2>
+		  <hr class="section-divider" />
+		  <p class="section-text">1. Click the "Give Prompts" button to receive a thought-provoking question.</p>
+		  <p class="section-text">2. Share your response in the provided textarea on the right.</p>
+		  <p class="section-text">3. Click "Go!" to let us analyze your input and predict your Myers-Briggs personality type.</p>
+		  <p class="section-text">4. Explore the results and gain valuable insights into your personality.</p>
+		</div>
+	  </div>
+	</div>
+  </section>
+  
+
+    <!-- Container for prompts and form -->
+    <section id="layout">
+      <div class="container">
+        <div class="row justify-content-center">
+          <!-- Center the content -->
+          <!-- Left column for prompts -->
+          <div class="col-lg-6">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+              <div class="card-body">
+				<h2 class="card-title prompts-title">Prompts</h2>
+                <br>
+                <div id="promptContainer" class="text-center">
+                  <!-- Random question will be dynamically inserted here -->
+                </div>
+                                    <div class="text-center">
+
+                <button class="btn btn-primary" id="givePromptsButton">Give Prompts</button>
+                                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column for form -->
+          <div class="col-lg-6">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+              <div class="card-body">
+				<h2 class="card-title type-predict-title">Type to Predict</h2>
+                <br>
+                <div class="form-group">
+                  <form  method="POST" action="/response">
+                    <textarea class="form-control mr-md-2"  rows="6" type="textarea" required name="fsnippet" placeholder="Please enter your response here. Be expressive as possible to truly reveal your personality !"></textarea>
+                    
+					<br>
+					<br>
+                    <div class="text-center">
+
+                    <button class="btn btn-success" id="search_button" type="submit" value="Submit"  onclick="handleButtonClick()">Go!</button>
+<!-- Spinner --><br>
+					<br>
+							<div class="spinner-border" role="status" id="formSpinner">
+							<span class="sr-only">Loading...</span>
+							</div>
+					</div>
+                         </div>
+                  </form>
+		
+
+				  
+				  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<script>
+  // Function to show the spinner
+  function showSpinner() {
+    document.getElementById('formSpinner').style.display = 'inline-block';
+  }
+
+  // Function to hide the spinner
+  function hideSpinner() {
+    document.getElementById('formSpinner').style.display = 'none';
+  }
+
+  // Function to handle button click
+  function handleButtonClick() {
+    showSpinner(); // Show the spinner when the button is clicked
+
+    // Simulate a process (replace this with your actual logic)
+    setTimeout(function () {
+      hideSpinner(); // Hide the spinner once the process is complete
+    }, 100000); // Simulated delay of 5 seconds
+  }
+</script>
+
+	
+    <!-- JavaScript to handle prompts -->
+    <!-- JavaScript to handle prompts -->
+    <script>
+      // Questions array (replace with your own questions)
+	  const questions = [
+  "What is your greatest desire?",
+  "What is your greatest fear?",
+  "How do you see yourself in 5 years time?",
+  "How do you express yourself?",
+  "What do you think of those closest to you (Family, friends)?",
+  "How do you perceive change/uncertainty?",
+  "How do you make decisions?",
+  "How do you deal with your emotions?",
+  "What motivates you in life?",
+  "What do you hope to achieve in your life?",
+  "What do you hope to avoid doing or being?",
+  "How do you want others to see you? How do you see yourself?",
+  "Are you artistic? If so, describe your art?",
+  "What is your opinion of the past, present and future? How do you treat them?",
+  "How do you act when others ask for your help to do something (anything)? If you decided to help them, why would you do it?",
+  "Do you control others, even indirectly? How and why do you do this?",
+  "What are your hobbies?",
+  "How good are you at devising strategies? Do you find it easy to break projects down into manageable tasks? Or do you tend to pilot projects and improvise as you go along?",
+  "What are your aspirations in life, professionally and personally?",
+  "What makes you feel uncomfortable?",
+  "What do you dislike?",
+  "What are the 'highs' in your life?",
+  "What are the 'lows' in your life?",
+  "How attached are you to reality? Do you often dream or do you pay attention to your surroundings?",
+  "Imagine you're alone in a blank, empty room. You have nothing to do and no-one to talk to. What do you think?",
+  "How long does it take you to make an important decision? And do you change your mind once you've made it?",
+  "Do you often break the rules? Do you think authority should be challenged, or that they know best? If you break the rules, why?",
+  "What is beauty? What is love?",
+  "Do you have any spiritual/religious beliefs, and why do you (or don't you) have these beliefs in the first place?",
+  "Opinion on war and armies? What does power mean to you?",
+  "What have you had long conversations about? What are your interests?",
+  "Any books or films you have enjoyed?",
+  "What made you cry?",
+  "What made you smile?",
+];
+      // Function to get a random question
+      function getRandomQuestion() {
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        return questions[randomIndex];
+      }
+
+      // Function to populate prompts with a random question and add fade-in animation
+      function populateRandomPrompt() {
+        const promptContainer = document.getElementById('promptContainer');
+        const promptElement = document.createElement('p');
+        promptElement.innerHTML = getRandomQuestion();
+        promptElement.style.fontSize = '1.5em'; // Adjust font size
+        promptElement.style.fontFamily = 'cursive'; // Set to cursive font
+        promptElement.classList.add('fade-in'); // Add fade-in animation class
+        promptContainer.innerHTML = ''; // Clear existing prompt
+        promptContainer.appendChild(promptElement);
+      }
+
+      // Event listener for "Give Prompts" button
+      document.getElementById('givePromptsButton').addEventListener('click', populateRandomPrompt);
+
+    </script>
+
+
+
+
+    <!-- Link to MB website -->
+    <hr>
+    <section>
+      <div class="container">
+        <div class="card">
+          <div class="card-header">
+            The more you know!
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Curious to know more about the 16 personality types?</h5>
+            <p class="card-text">Understand yourself better with free, detailed descriptions of each of Myers and Briggs' 16 personality types. Learn the meaning of your personality type, your strengths and weaknesses, and find practical info on careers and relationships for your type.
+              Not sure which personality type you are? </p>
+            <div style="text-align:center">
+              <a href="https://www.16personalities.com/" class="btn btn-outline-success my-2 my-sm-0">Visit the official myers briggs website</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <script src="static\javascript\script.js"></script>
+
+  </body>
+
+  <!-- Footer stuff -->
+  <br>
+  <br>
+  <footer class="page-footer font-small blue">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="index.html">UT Data Bootcamp</a>
+    </div>
+  </footer>
+
+</html>

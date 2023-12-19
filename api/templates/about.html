@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html>
+    
+<head>
+	<title> About </title>
+	<!-- External CSS file -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Our own css files -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+	<!-- Bootstrap CDN -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<!-- This is the nav bar. Paste on every page at the top of the body-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">MBTI | PREDICTOR</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+          <a class="nav-link" href="/" style="font-size:1vw" >Home</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/explore" style="font-size:1vw" >Explore</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/methodology" style="font-size:1vw" >Methodology</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/documentation" style="font-size:1vw">Documentation</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about" style="font-size:1vw">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  
+
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">About </h1>
+        <p class="lead">
+          An oddssey to puzzle out some machine learning for myers-briggs personalities.
+        </p>
+    </div>
+</div>
+    
+ 
+<!-- Bios section -->
+<section class="bios">
+    <div class="container">
+        <div class="row">
+            <a href="https://www.linkedin.com/in/thayananth/" target="_blank">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img class="card-img" src="{{ url_for('static', filename='images/thaya.jpeg') }}" alt="Ekta Sharma">
+            </a>
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <br>
+                <h3>Thayananth Kumaresan</h3>
+                <br>
+<p>
+  A highly motivated and adventurous individual, who is currently in 3rd year studying Computer Science at the University of Malaya and a scholar of UMW Scholarship 2021. I am actively internship in the data science industry to build upon an analytic thinking mindset and experience the life behind the screen. I am mechanically minded and I practice a methodical approach to working. I'm eager to learn and develop personal skills in a practical setting. 
+
+</p>            </div>
+        </div>
+    </div>
+<br>
+<hr>
+</section>
+
+<!-- About section -->
+  <div class="container">
+      <h2 class="text-center mb-4">About Myers Briggs Personality Prediction</h2>
+      <p>Welcome to the Myers Briggs Personality Prediction platform, a project presented by Thayananth A/L Kumaresan and supervised by Dr. Vimala Balakrishnan.</p>
+
+      <div class="row mt-4">
+          <div class="col-md-6">
+              <h3>Introduction to Personality Traits</h3>
+              <p>Personality traits refer to the unique tendencies individuals exhibit in their behavior, thoughts, or feelings (Ashton, 2013). Measuring personality involves using self-report questionnaires like the Myers–Briggs Type Indicator (MBTI) and others, each with its own set of strengths and limitations.</p>
+          </div>
+          <div class="col-md-6">
+              <h3>Introduction to Myers–Briggs Type Indicator (MBTI)</h3>
+              <p>The MBTI, utilized by over 2 million test takers in 115 countries and available in 29 languages, is a widely recognized personality inventory. It originated from the work of Katherine Briggs and her daughter, building on Carl Jung's theory of psychological types. This tool is frequently employed in business, counseling, and education, demonstrating high reliability and validity (Tzeng et al., 1989; McCaulley & Moody, 2008).</p>
+          </div>
+      </div>
+
+      <!-- Add more rows for other sections -->
+
+      <h3 class="mt-4">Description of the Dataset</h3>
+      <p>The project utilizes the Myers-Briggs Personality (MBTI) Type Dataset obtained from Kaggle, consisting of 8600 rows with 4-letter personality type labels and text from the last 50 posts made by users. The dataset, chosen for its size, diversity, and availability, plays a crucial role in the research objectives.</p>
+
+      <h3 class="mt-4">Methodology</h3>
+      <p>The methodology involves data cleaning, exploratory data analysis, feature engineering, and ensemble modeling using machine learning techniques such as Logistic Regression, Light Gradient Boosting, and others. Feature extraction includes traditional text representation, and the dataset is evaluated using various metrics.</p>
+
+      <!-- Add more sections as needed -->
+
+      <h3 class="mt-4">Deployment</h3>
+      <p>The culmination of this project will be a web application, providing users with an interactive and insightful experience in exploring personality traits through text analysis.</p>
+  </div>
+
+
+
+
+
+</body>
+
+<!-- Footer stuff -->
+<footer class="page-footer font-small blue">
+	<div class="footer-copyright text-center py-3">© 2020 Copyright:
+	  <a href="index.html">UT Data Bootcamp</a>
+	</div>
+</footer>
+
+</html>
