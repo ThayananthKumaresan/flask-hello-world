@@ -26,6 +26,7 @@ from nrclex import NRCLex
 
 nltk.download('stopwords')
 nltk.download('wordnet')
+nltk.download('vader_lexicon')
 from scipy.sparse import hstack
 
 def cleaning_text(text):

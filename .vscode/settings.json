@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/e9168acd-40bd-4b7a-ab76-659b37cf8ad1/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/mbti-test-app",
+    "appService.deploySubpath": "."
+}
