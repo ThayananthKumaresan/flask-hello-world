@@ -174,19 +174,19 @@ def predict(text):
 
     #     # Load meta-model
     #     loaded_meta_model = joblib.load(f'{personality_type}_meta_model.joblib')
-        with open('personality_type_gb_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_gb_model.pkl', 'rb') as f:
             loaded_gb_model = pickle.load(f)
 
         # Load XGBoost model
-        with open('personality_type_xgb_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_xgb_model.pkl', 'rb') as f:
             loaded_xgb_model = pickle.load(f)
 
         # Load LGBM model
-        with open('personality_type_lgbm_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_lgbm_model.pkl', 'rb') as f:
             loaded_lgbm_model = pickle.load(f)
 
         # Load meta-model
-        with open('personality_type_meta_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_meta_model.pkl', 'rb') as f:
             loaded_meta_model = pickle.load(f)
 
         gb_sample_pred = loaded_gb_model.predict(features)
