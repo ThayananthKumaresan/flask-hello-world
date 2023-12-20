@@ -5,28 +5,31 @@
 <head>
     <title> Myers Briggs Personality Predictor - Explore </title>
     <!-- External CSS file -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Our own css files -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
     <!-- Bootstrap CDN -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="{{ url_for('static', filename='javascript/wordcloud2.js') }}"></script>
-    <script src="{{ url_for('static', filename='javascript/wordcloud.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 
-<!-- Include wordcloud2.js -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<script src="
-https://cdn.jsdelivr.net/npm/chartjs-chart-graph@4.2.7/build/index.umd.min.js
-"></script>
 
 </head>
 
@@ -34,238 +37,332 @@ https://cdn.jsdelivr.net/npm/chartjs-chart-graph@4.2.7/build/index.umd.min.js
     <!-- This is the nav bar. Paste on every page at the top of the body-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">MBTI | PREDICTOR</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/" style="font-size:1vw" >Home</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/explore" style="font-size:1vw" >Explore</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/methodology" style="font-size:1vw" >Methodology</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/documentation" style="font-size:1vw">Documentation</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about" style="font-size:1vw">About</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" style="font-size:1vw">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore" style="font-size:1vw">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/methodology" style="font-size:1vw">Methodology</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/documentation" style="font-size:1vw">Documentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about" style="font-size:1vw">About</a>
+                </li>
+            </ul>
         </div>
-      </nav>
-      
-      <div class="jumbotron jumbotron-fluid">
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">Explore</h1>
+            <h1 class="display-4">Explore</h1>
             <p class="lead">
-              This was a long and arduous process. Finding meaningful datapoints, exploring different models and realizing predicting everything in a single model doesn't work. Then splitting up the attributes and continuing the process times 4. 
-                The end result is 4 models, each to predict 1 attribute of the Myers-Briggs personality type and combine them later.
+                This was a long and arduous process. Finding meaningful datapoints, exploring different models and
+                realizing predicting everything in a single model doesn't work. Then splitting up the attributes and
+                continuing the process times 4.
+                The end result is 4 models, each to predict 1 attribute of the Myers-Briggs personality type and combine
+                them later.
             </p>
         </div>
     </div>
-    
-    <br/>      
-<!-- General Overview Section -->
-<section class="general-overview">
-    <div class="container">
-        <div class="row">
-            <!-- Left Section for Bar Chart -->
-            <div class="col-md-6">
-                <h2>Exploratory Data Analysis</h2>
 
-                <!-- Include Chart.js library -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <br />
+    <!-- General Overview Section -->
+    <section class="general-overview">
+        <div class="container">
+            <div class="row">
+                <!-- Left Section for Bar Chart -->
+                <div class="col-md-6">
+                    <h2>Exploratory Data Analysis</h2>
 
-                <!-- Example: Display a chart using Chart.js -->
-                <canvas id="myChart" width="400" height="400"></canvas>
-                <script>
-                    // Use Jinja templating to pass data from Flask to JavaScript
-                    var chartLabels = {{ eda_data['chart_labels'] | tojson | safe }};
-                    var chartValues = {{ eda_data['chart_values'] | tojson | safe }};
+                    <!-- Include Chart.js library -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                    // Create a Chart.js chart using the passed data
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: chartLabels,
-                            datasets: [{
-                                label: 'Chart Data',
-                                data: chartValues,
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+                    <!-- Example: Display a chart using Chart.js -->
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <script>
+                        // Use Jinja templating to pass data from Flask to JavaScript
+                        var chartLabels = {{ eda_data['chart_labels'] | tojson | safe }};
+                        var chartValues = {{ eda_data['chart_values'] | tojson | safe }};
+
+                        // Create a Chart.js chart using the passed data
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: chartLabels,
+                                datasets: [{
+                                    label: 'Chart Data',
+                                    data: chartValues,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
                                 }
                             }
+                        });
+                    </script>
+                </div>
+                <style>
+                    .container2 {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        grid-row: auto auto;
+
+                        .box {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
                         }
-                    });
-                </script>
-            </div>
-            <style>
-                .container2{
-                  display:grid;
-                  grid-template-columns: auto auto;
-                  grid-row: auto auto;
-        
-                  .box{
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                  }
-                
-                }
-                
-                
-                
-                </style>  
-            <!-- Right Section for Pie Charts -->
-            <div class="col-md-6">
-                <h2>Personality Distribution</h2>
-                <!-- Include Chart.js library -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                <!-- Example: Display a pie chart using Chart.js -->
-               
-<div class="container2">
-    <div class="box">            <canvas id="pieChart1"></canvas>
-  </div>
-    <div class="box">            <canvas id="pieChart2"></canvas>
-  </div>
-    <div class="box">            <canvas id="pieChart3"></canvas>
-  </div>
-    <div class="box">            <canvas id="pieChart4"></canvas>
-  </div>
-  </div>
-              
+                    }
+                </style>
+                <!-- Right Section for Pie Charts -->
+                <div class="col-md-6">
+                    <h2>Personality Distribution</h2>
+                    <!-- Include Chart.js library -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script>
-    // Use Jinja templating to pass data from Flask to JavaScript
-    var pieChart1Data = [6676 , 1999];
-    var pieChart2Data = [7478 ,1197];
-    var pieChart3Data = [4694 , 3981];
-    var pieChart4Data = [5241 , 3434];
+                    <!-- Example: Display a pie chart using Chart.js -->
 
-    // Create pie charts using the passed data
-    var pieCtx1 = document.getElementById('pieChart1').getContext('2d');
-    var pieChart1 = new Chart(pieCtx1, {
-        type: 'pie',
-        data: {
-            labels: ['Introversion (I)', 'Extroversion (E)'],
-            datasets: [{
-                data: pieChart1Data,
-                backgroundColor: ['red', 'green', 'blue']
-            }]
-        }
-    });
+                    <div class="container2">
+                        <div class="box"> <canvas id="pieChart1"></canvas>
+                        </div>
+                        <div class="box"> <canvas id="pieChart2"></canvas>
+                        </div>
+                        <div class="box"> <canvas id="pieChart3"></canvas>
+                        </div>
+                        <div class="box"> <canvas id="pieChart4"></canvas>
+                        </div>
+                    </div>
 
-    var pieCtx2 = document.getElementById('pieChart2').getContext('2d');
-    var pieChart2 = new Chart(pieCtx2, {
-        type: 'pie',
-        data: {
-            labels: ['Intuition (N)', 'Sensing (S)'],
-            datasets: [{
-                data: pieChart2Data,
-                backgroundColor: ['red', 'green', 'blue']
-            }]
-        }
-    });
 
-    var pieCtx3 = document.getElementById('pieChart3').getContext('2d');
-    var pieChart3 = new Chart(pieCtx3, {
-        type: 'pie',
-        data: {
-            labels: ['Thinking (T)', 'Feeling (F)'],
-            datasets: [{
-                data: pieChart3Data,
-                backgroundColor: ['red', 'green', 'blue']
-            }]
-        }
-    });
+                    <script>
+                        // Use Jinja templating to pass data from Flask to JavaScript
+                        var pieChart1Data = [6676, 1999];
+                        var pieChart2Data = [7478, 1197];
+                        var pieChart3Data = [4694, 3981];
+                        var pieChart4Data = [5241, 3434];
 
-    var pieCtx4 = document.getElementById('pieChart4').getContext('2d');
-    var pieChart4 = new Chart(pieCtx4, {
-        type: 'pie',
-        data: {
-            labels: ['Judging (J)', 'Perceiving (P)'],
-            datasets: [{
-                data: pieChart4Data,
-                backgroundColor: ['red', 'green', 'blue']
-            }]
-        }
-    });
-</script>
+                        // Create pie charts using the passed data
+                        var pieCtx1 = document.getElementById('pieChart1').getContext('2d');
+                        var pieChart1 = new Chart(pieCtx1, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Introversion (I)', 'Extroversion (E)'],
+                                datasets: [{
+                                    data: pieChart1Data,
+                                    backgroundColor: ['red', 'green', 'blue']
+                                }]
+                            }
+                        });
+
+                        var pieCtx2 = document.getElementById('pieChart2').getContext('2d');
+                        var pieChart2 = new Chart(pieCtx2, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Intuition (N)', 'Sensing (S)'],
+                                datasets: [{
+                                    data: pieChart2Data,
+                                    backgroundColor: ['red', 'green', 'blue']
+                                }]
+                            }
+                        });
+
+                        var pieCtx3 = document.getElementById('pieChart3').getContext('2d');
+                        var pieChart3 = new Chart(pieCtx3, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Thinking (T)', 'Feeling (F)'],
+                                datasets: [{
+                                    data: pieChart3Data,
+                                    backgroundColor: ['red', 'green', 'blue']
+                                }]
+                            }
+                        });
+
+                        var pieCtx4 = document.getElementById('pieChart4').getContext('2d');
+                        var pieChart4 = new Chart(pieCtx4, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Judging (J)', 'Perceiving (P)'],
+                                datasets: [{
+                                    data: pieChart4Data,
+                                    backgroundColor: ['red', 'green', 'blue']
+                                }]
+                            }
+                        });
+                    </script>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
-<!-- Understanding Each Personality Section -->
-<section class="understanding-personality">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2>Understanding Each Personality</h2>
 
-                <!-- Dropdown for MBTI personalities -->
-                <select class="form-control">
-                    <option value="INFP">INFP</option>
-                    <option value="'INTP'">INFJ</option>
-                    <option value="INTJ">INTJ</option>
-                    <option value="ENTP">ENTP</option>
-                    <option value="ENFP">ENFP</option>
-                    <option value="ISTP">ISTP</option>
-                    <option value="ISFP">ISFP</option>
-                    <option value="ENTJ">ENTJ</option>
-                    <option value="ISTJ">ISTJ</option>
-                    <option value="ENFJ">ENFJ</option>
-                    <option value="ISFJ">ISFJ</option>
-                    <option value="ESTP">ESTP</option>
-                    <option value="ESFP">ESFP</option>
-                    <option value="ESFJ">ESFJ</option>
-                    <option value="ESTJ">ESTJ</option>
-                    <option value="INTP">INTP</option>
-                    <!-- Add more options for each personality -->
-                </select>
+    <script>
+
+
+        var eda2Data = {{ eda2_data| tojson | safe }};
+        // console.log(eda2Data);
+
+        // Function to show the spinner
+        function showSpinner() {
+            document.getElementById('formSpinner').style.display = 'inline-block';
+        }
+
+        // Function to hide the spinner
+        function hideSpinner() {
+            document.getElementById('formSpinner').style.display = 'none';
+        }
+
+
+
+        function loadText() {
+            // Get the selected personality from the dropdown
+            showSpinner();
+
+
+            var selectedPersonality = document.getElementById("fpersonality").value;
+            console.log(selectedPersonality)
+
+            // Find the selected personality in eda2Data
+            var selectedPersonalityData = eda2Data.find(function (personality) {
+                return personality['type'] === selectedPersonality;
+            });
+
+            // Check if data is found
+            if (selectedPersonalityData) {
+                // Get the posts for the selected personality
+                var sentence = selectedPersonalityData['all_posts'];
+
+                // 改行を半角スペースに変換
+                sentence = sentence.replace(/\r?\n/g, ' ');
+
+                // グラフ描画
+                drawWorldCloud(sentence, "chartdiv");
+            } else {
+                // Handle the case when no data is found for the selected personality
+                console.log("No data found for the selected personality");
+            }
+
+
+            hideSpinner();
+
+        }
+
+        function drawWorldCloud(sentence, targetDivId) {
+            // アニメーションテーマを使う
+            am4core.useTheme(am4themes_animated);
+
+            var chart = am4core.create(targetDivId, am4plugins_wordCloud.WordCloud);
+            var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+
+            series.accuracy = 4;
+            series.step = 15;
+            series.rotationThreshold = 0.7;
+            series.maxCount = 200;
+            series.minWordLength = 2; // 最少頻度
+            series.labels.template.tooltipText = "{word}: {value}";
+            series.fontFamily = "'M PLUS 1p', sans-serif";
+            series.maxFontSize = am4core.percent(30);
+
+            // 文字列を渡すだけ
+            series.text = sentence;
+
+            // カラフルになる。
+            series.colors = new am4core.ColorSet();
+            series.colors.passOptions = {}; // makes it loop
+
+
+        }
+
+
+    </script>
+
+
+
+    <!-- Understanding Each Personality Section -->
+    <section class="understanding-personality">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Understanding Each Personality</h2>
+                    <!-- Dropdown for MBTI personalities -->
+                    <select class="form-control" name="fpersonality" id="fpersonality" onchange="loadText()">
+                        <option value="INFP">INFP</option>
+                        <option value="INFJ">INFJ</option>
+                        <option value="INTJ">INTJ</option>
+                        <option value="ENTP">ENTP</option>
+                        <option value="ENFP">ENFP</option>
+                        <option value="ISTP">ISTP</option>
+                        <option value="ISFP">ISFP</option>
+                        <option value="ENTJ">ENTJ</option>
+                        <option value="ISTJ">ISTJ</option>
+                        <option value="ENFJ">ENFJ</option>
+                        <option value="ISFJ">ISFJ</option>
+                        <option value="ESTP">ESTP</option>
+                        <option value="ESFP">ESFP</option>
+                        <option value="ESFJ">ESFJ</option>
+                        <option value="ESTJ">ESTJ</option>
+                        <option value="INTP">INTP</option>
+                        <!-- Add more options for each personality -->
+                    </select>
+                    <!-- Spinner -->
+       
+                </div>
+                <div class="spinner-border col-8" role="status" id="formSpinner">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <section class=" section">
+                    <h2>Frequently used words by your personality </h2>
+
+                    <div id="chartdiv"></div>
+
+                </section>
+
+
+
             </div>
+
+
+
+
         </div>
-    </div>
-</section>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script> 
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="/images/posts/111/world-cloud.js"></script>
-
-<!-- スタイル -->
-<style>
-#chartdiv {
-  width: 100%;
-  height: 400px;
-}
-</style>
-
-<section class="section">
-
-
-</section>
+        </div>
+        </div>
 
 
 
-    <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+
+        <script src="https://www.amcharts.com/lib/4/core.js"></script>
+        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+        <script src="/images/posts/111/world-cloud.js"></script>
+
+
+        <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
 
 </body>
 

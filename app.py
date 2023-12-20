@@ -225,6 +225,12 @@ def predict(text):
 
 
 
+import pickle
+
+with open('result_df.pkl', 'rb') as file:
+    result_df = pickle.load(file)
+
+
 
 
 app = Flask(__name__)
@@ -268,25 +274,26 @@ def analysis():
     return render_template("analysis.html")
 
 
-@app.route("/methodology")
-def methodology():
-    return render_template("methodology.html")
-
-@app.route("/explore")
+@app.route("/explore", methods=["GET", "POST"])
 def explore():
-    wordcloud_data = [
-        {'text': 'word1', 'weight': 10},
-        {'text': 'word2', 'weight': 5},
-        {'text': 'word3', 'weight': 8},
-        # Add more words as needed
-    ]
+  
+
     eda_data = {
-        'wordcloud_data': wordcloud_data,
         'chart_labels': ['INFP', 'INFJ', 'INTP', 'INTJ', 'ENTP', 'ENFP', 'ISTP', 'ISFP', 'ENTJ', 'ISTJ', 'ENFJ', 'ISFJ', 'ESTP', 'ESFP', 'ESFJ', 'ESTJ'],
         'chart_values': [1832, 1470, 1304, 1091, 685, 675, 337, 271, 231, 205, 190, 166, 89, 48, 42, 39]
     }
-    
-    return render_template("explore.html", eda_data=eda_data)
+  
+  # Replace this logic with your actual data extraction
+    column_names = result_df.columns.tolist()
+    eda2_data = []
+
+    for _, row in result_df.iterrows():
+        row_data = {}
+        for col_name in column_names:
+            row_data[col_name] = row[col_name]
+        eda2_data.append(row_data)
+
+    return render_template("explore.html", eda_data=eda_data,eda2_data=eda2_data)
     
 
 @app.route("/about")
