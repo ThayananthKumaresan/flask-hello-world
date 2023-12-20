@@ -197,20 +197,25 @@ def predict(text):
         # Load meta-model
         with open(f'{personality_type}_meta_model.pkl', 'rb') as f:
             loaded_meta_model = pickle.load(f)
-
+        print("gb_sample_pred")
         gb_sample_pred = loaded_gb_model.predict(features)
+        print("xgb_sample_pred")
         xgb_sample_pred = loaded_xgb_model.predict(features)
+        print("lgbm_sample_pred")
         lgbm_sample_pred = loaded_lgbm_model.predict(features)
-        
         # Stack predictions
         stacked_sample_predictions = np.column_stack((gb_sample_pred, xgb_sample_pred, lgbm_sample_pred))
 
         # Make prediction using meta-model
+        print("meta_model_sample_pred")       
         meta_model_sample_pred = loaded_meta_model.predict(stacked_sample_predictions)
         pred.append(meta_model_sample_pred)
         # print(f"Predicted Personality Trait: {meta_model_sample_pred}")
 
     print("Before combining")
+    print("Result :",result)
+    print("sentiment :",sentiment)
+    print("emotion_df :",emotion_df)
     result = combine_classes(pred[0], pred[1], pred[2], pred[3])
     print("Before returning")
 
@@ -237,13 +242,14 @@ def index():
 @app.route("/response", methods=["GET", "POST"])
 def response():
     snippet = ""  # Initialize snippet with an empty string
-
+    prediction =""
     if request.method == "POST":
         print(" B E F O R E   C A L L I N G   P R E D I C T")
         snippet = request.form["fsnippet"]
         try:
             prediction= predict(snippet)
         except:
+            print("Predict contains : ",prediction)
             print("HANST RETURNED SUCCESFULLY")
 
         # Convert emotion index to list before passing it to the template
@@ -251,7 +257,7 @@ def response():
         emotion_values = prediction['emotion'].values[0].tolist()
         emotion_data = {'labels': emotion_labels, 'values': emotion_values}
 
-    return render_template("response.html", result=predict(snippet),  emotion_data=emotion_data, string = snippet)
+    return render_template("response.html", result=prediction,  emotion_data=emotion_data, string = snippet)
 
 
 @app.route("/analysis")
