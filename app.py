@@ -208,7 +208,7 @@ def predict(text):
         # Make prediction using meta-model
         meta_model_sample_pred = loaded_meta_model.predict(stacked_sample_predictions)
         pred.append(meta_model_sample_pred)
-        print(f"Predicted Personality Trait: {meta_model_sample_pred}")
+        # print(f"Predicted Personality Trait: {meta_model_sample_pred}")
 
 
     result = combine_classes(pred[0], pred[1], pred[2], pred[3])
@@ -238,8 +238,10 @@ def response():
     snippet = ""  # Initialize snippet with an empty string
 
     if request.method == "POST":
+        print(" B E F O R E   C A L L I N G   P R E D I C T")
         snippet = request.form["fsnippet"]
         prediction= predict(snippet)
+        print("Returned")
 
         # Convert emotion index to list before passing it to the template
         emotion_labels = prediction['emotion'].columns.tolist()
