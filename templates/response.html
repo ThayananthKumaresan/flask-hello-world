@@ -69,18 +69,13 @@ https://cdn.jsdelivr.net/npm/chartjs-chart-graph@4.2.7/build/index.umd.min.js
     <div class="container">
         <div class="row">
             <div class="col-12">
-
-
-                {% if result %}
                     <div class="alert alert-warning alert-dismissible fade show">
                         <h4 class="alert-heading"><i class="fa fa-warning"></i> You typed:</h4>
                         <i>"{{string}}"</i>
                         <hr>
-                        <p class="mb-0">Your predicted personality type is: <strong style="font-size:40px">{{ result['prediction'] }}</strong></p>                        
+                        <p class="mb-0">Your predicted personality type is: <strong style="font-size:40px">{{result['prediction']}}</strong></p>                        
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                     </div>
-                {% endif %}
-
 
             </div>
         </div>
@@ -98,12 +93,14 @@ https://cdn.jsdelivr.net/npm/chartjs-chart-graph@4.2.7/build/index.umd.min.js
                 <h2>Sentiment Analysis Chart</h2>
                 <canvas id="sentimentChart" width="400" height="400"></canvas>
                 <script>
-
                     <!-- Extract sentiment scores from Flask data -->
                     var posSentiment = {{ result['sentiment']['pos_sentiment'] }};
                     var negSentiment = {{ result['sentiment']['neg_sentiment'] }};
                     var neuSentiment = {{ result['sentiment']['neu_sentiment'] }};
-    
+                    console.log(posSentiment);
+                    console.log(negSentiment);
+                    console.log(neuSentiment);
+
                     // Create a Chart.js chart using the sentiment scores
                     var ctx = document.getElementById('sentimentChart').getContext('2d');
                     var sentimentChart = new Chart(ctx, {
@@ -182,10 +179,10 @@ https://cdn.jsdelivr.net/npm/chartjs-chart-graph@4.2.7/build/index.umd.min.js
 		Before you go:
 	</div>
 	<div class="card-body">
-	  <h5 class="card-title">Curious to know more about your {{result['prediction'] }} personality type?</h5>
+	  <h5 class="card-title">Curious to know more about your {{result['prediction']}} personality type?</h5>
 	  <p class="card-text">Check it out on the official MB Website:</p>
 	  <div style="text-align:center">
-	  	<a href="https://www.16personalities.com/{{name}}-personality" class="btn btn-outline-success my-2 my-sm-0">16personalities.com/{{result['prediction'] }}</a>
+	  	<a href="https://www.16personalities.com/{{name}}-personality" class="btn btn-outline-success my-2 my-sm-0">16personalities.com/{{output}}</a>
 	  </div>
 	</div>
   </div>

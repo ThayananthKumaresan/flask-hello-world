@@ -213,10 +213,11 @@ def predict(text):
         # print(f"Predicted Personality Trait: {meta_model_sample_pred}")
 
     print("Before combining")
+    result = combine_classes(pred[0], pred[1], pred[2], pred[3])
+    print("After combining")
     print("Result :",result)
     print("sentiment :",sentiment)
     print("emotion_df :",emotion_df)
-    result = combine_classes(pred[0], pred[1], pred[2], pred[3])
     print("Before returning")
 
     return {"prediction": result, "sentiment": sentiment, "emotion": emotion_df}
@@ -242,22 +243,24 @@ def index():
 @app.route("/response", methods=["GET", "POST"])
 def response():
     snippet = ""  # Initialize snippet with an empty string
-    prediction =""
+    emotion_data=[]
+    sentiment_data = {'pos_sentiment': 0, 'neg_sentiment': 0, 'neu_sentiment': 0}
+    output =""
+    prediction ={}
     if request.method == "POST":
         print(" B E F O R E   C A L L I N G   P R E D I C T")
         snippet = request.form["fsnippet"]
-        try:
-            prediction= predict(snippet)
-        except:
-            print("Predict contains : ",prediction)
-            print("HANST RETURNED SUCCESFULLY")
+        prediction= predict(snippet)
+        output = prediction['prediction']
 
+        # Convert sentiment_data index to list before passing it to the template
+        sentiment_data = prediction.get('sentiment', {'pos_sentiment': 0, 'neg_sentiment': 0, 'neu_sentiment': 0})
         # Convert emotion index to list before passing it to the template
         emotion_labels = prediction['emotion'].columns.tolist()
         emotion_values = prediction['emotion'].values[0].tolist()
         emotion_data = {'labels': emotion_labels, 'values': emotion_values}
-
-    return render_template("response.html", result=prediction,  emotion_data=emotion_data, string = snippet)
+        print("sentiment_data :",sentiment_data)
+    return render_template("response.html", predicted=output, emotion_data=emotion_data, result=prediction, string=snippet)
 
 
 @app.route("/analysis")
