@@ -210,8 +210,9 @@ def predict(text):
         pred.append(meta_model_sample_pred)
         # print(f"Predicted Personality Trait: {meta_model_sample_pred}")
 
-
+    print("Before combining")
     result = combine_classes(pred[0], pred[1], pred[2], pred[3])
+    print("Before returning")
 
     return {"prediction": result, "sentiment": sentiment, "emotion": emotion_df}
 
@@ -240,8 +241,10 @@ def response():
     if request.method == "POST":
         print(" B E F O R E   C A L L I N G   P R E D I C T")
         snippet = request.form["fsnippet"]
-        prediction= predict(snippet)
-        print("Returned")
+        try:
+            prediction= predict(snippet)
+        except:
+            print("HANST RETURNED SUCCESFULLY")
 
         # Convert emotion index to list before passing it to the template
         emotion_labels = prediction['emotion'].columns.tolist()
