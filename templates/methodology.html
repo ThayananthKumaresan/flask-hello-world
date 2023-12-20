@@ -177,7 +177,7 @@
 			<div id="collapseFive5" class="collapse" role="tabpanel" aria-labelledby="headingFive5"
 				data-parent="#accordionEx">
 				<div class="card-body">
-					<p>Following steps were taken to prepare the data for machine learning models:</p>
+					<!-- <p>Following steps were taken to prepare the data for machine learning models:</p>
 					<strong>Cleaning the Data</strong>
 					<ul>
 						<li>Posts were converted into lower case.</li>
@@ -194,7 +194,7 @@
 					<p>NLTK POS tagger was used to tag each word with its part of speech tag. The average number of each of the POS tags was calculated for each user based on the original posts. The POS tags included were – Noun, Pronoun, Verb, Adverb, Adjective, Conjunction, Determiners, Numbers, Prepositions, Particles and Punctuations. </p>
 					<strong>Counting</strong>
 					<p>Per user average counts were taken for number of question marks, exclamations, colons, emojis, words, unique words, upper case words, links, ellipses and images. These counts were our additional features for the machine learning models covered in step 6.</p>
-				</div>	
+				</div>	 -->
 			</div>
 
 			<!-- Accordion card -->
@@ -222,7 +222,7 @@
 						<li>Since the data was imbalanced Imbalance Learn Pipeline was used to create the models. The pipeline was composed of preprocess (from the above step), random under sampler (to handle class imbalance) and the classification model.</li>
 						<li>Following models were built, trained and tested on dataset:</li>
 							<ul>
-								<li>TF-IDF Logistic Regression</li>
+								<!-- <li>TF-IDF Logistic Regression</li>
 								<li>Count Vectorized Logistic Regression</li>
 								<li>TF-IDF Logistic Lasso</li>
 								<li>Count Vectorized Logistic Lasso</li>
@@ -234,7 +234,7 @@
 								<li>TF-IDF Naive Bayes</li>
 								<li>Count Vectorized Naive Bayes</li>
 								<li>TF-IDF Random Forest</li>
-								<li>Count Vectorized Random Forest</li>
+								<li>Count Vectorized Random Forest</li> -->
 							</ul>
 						<li>Evaluation Metrics – Accuracy, Precision, Recall, ROC-AUC and Average Precison_Recall_Score were used as the measures to evaluate the models and select the one performing the best. </li>
 						<li>Final Model – Based on the scores for the evaluation metrics used, TF-IDF Logistic Regression Model was selected as the final model for predicting Myers Briggs personality type. </li>
@@ -259,10 +259,10 @@
 			<!-- Card body -->
 			<div id="collapseEight8" class="collapse" role="tabpanel" aria-labelledby="headingEight8"
 				data-parent="#accordionEx">
-				<div class="card-body">
+				<!-- <div class="card-body">
 					<p>The dataset was heavily imbalanced with most people identifying as introverted (I) and Intuitive (N) rather than extroverted (E) and Sensitive (S). This caused all our models to have a hard time classifying Extroversion vs. Introversion and Sensitivity vs. Intuition. We were able to overcome this problem to some extent by using Imbalance Learn’s Random Under Sampling method. This improved the scores but not significantly. We also added extra words that didn’t seem to be very helpful in classifying a personality trait to the stop words list to make the model predict more efficiently. Our model is able to predict 2 to 4 traits out of a total of 4 traits and we consider this as success because even for human readers it is difficult to accurately predict a person’s Myers Briggs personality type. </p>
 					<p>In our future efforts to improve this model, we plan to add more data specifically for the types that have low counts in our current dataset to balance the classes. We also want to implement a neural network based model in an attempt to see if that can outperform our current model in accurately predicting all 4 traits of the Myers Briggs personality type. </p>
-				</div>
+				</div> -->
 			</div>
 
 		</div>
