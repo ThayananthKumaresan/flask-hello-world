@@ -305,6 +305,9 @@ def documentation():
     return render_template("documentation.html")
 
 
+@app.route("/methodology")
+def methodology():
+    return render_template("methodology.html")
 
 
 ###############################################################################
