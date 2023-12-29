@@ -324,45 +324,46 @@
                         <!-- Add more options for each personality -->
                     </select>
                     <!-- Spinner -->
-       
+
                 </div>
                 <div class="spinner-border col-8" role="status" id="formSpinner">
                     <span class="sr-only">Loading...</span>
                 </div>
-                <section class=" section">
-                    <h2>Frequently used words by your personality </h2>
-
-                    <div id="chartdiv"></div>
-
-                </section>
 
 
 
             </div>
+            <h2>Frequently used words by your personality </h2>
+
+            <div id="chartdiv" style="height: 500px;"></div>
+    
 
 
 
 
         </div>
-        </div>
-        </div>
+    </section>
+
+    <section class=" section">
+       
+    </section>
 
 
 
 
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
 
-        <script src="https://www.amcharts.com/lib/4/core.js"></script>
-        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-        <script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-        <script src="/images/posts/111/world-cloud.js"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="/images/posts/111/world-cloud.js"></script>
 
 
-        <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
 
 </body>
 
