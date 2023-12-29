@@ -9,11 +9,6 @@ import numpy as np
 import nltk
 import re
 
-
-# Machine Learning packages
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
-
 # Ignore noise warning
 import warnings
 warnings.filterwarnings("ignore")
@@ -55,14 +50,12 @@ def cleaning_text(text):
 
     # Convert text to lowercase
     text = text.lower()
-
     # Removing words that are 1 to 2 characters long
     text = re.sub(r'\b\w{1,2}\b', '', text)
 
     # Remove very short or long words
     text = re.sub(r'(\b\w{0,3})?\b', '', text)
     text = re.sub(r'(\b\w{30,1000})?\b', '', text)
-
     # Remove punctuations
     text = re.sub(re.compile(r"[^a-z\s]"), " ", text)
 
@@ -96,18 +89,26 @@ def extract_features_from_text(user_input):
     
     # 1. Word-level TF
     word_tf= word_tf_vectorizer.transform([user_input])
+    print("Number of word_tf in input data:", word_tf.shape[1])
 
     # 2. Word-level TFIDF    
     word_tfidf=  word_tfidf_vectorizer.transform([user_input])
+    print("Number of word_tfidf in input data:", word_tfidf.shape[1])
 
     # 3. Sentiment
     sia = SentimentIntensityAnalyzer()
     sentiment_score = sia.polarity_scores(user_input)['compound']
+    print("Number of sSENTIMENT FEATURES in input data:", sentiment_score)
 
     # 4. Emotion
     text_object = NRCLex(user_input)
     emotion_counts = text_object.affect_frequencies
     emotion_df = pd.DataFrame(emotion_counts, index=[0])
+    
+    if emotion_df.shape[1] < 11:
+        fake_emotion = {'fake_emotion': 0}
+        emotion_df = emotion_df.join(pd.DataFrame(fake_emotion, index=[0]))
+    
 
     # Combine all features into a single DataFrame
     features_df = pd.concat([pd.DataFrame(word_tf.toarray(), index=[0], columns=word_tf_vectorizer.get_feature_names_out()),
@@ -123,6 +124,7 @@ def prep (text):
     print('prep...')
 
     text_cleaned= cleaning_text(text)
+    print('CLEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANED TEXT...',text_cleaned)
     extracted_features = extract_features_from_text(text_cleaned)
     return extracted_features
 
@@ -156,13 +158,6 @@ def combine_classes(y_pred1, y_pred2, y_pred3, y_pred4):
 
 
 def generate_highlighted_circles(personality_type):
-    dichotomies = {
-        "I": "E",
-        "N": "S",
-        "T": "F",
-        "P": "J",
-    }
-
     labels = {
         "E": "Mind",
         "I": "Mind",
@@ -231,6 +226,7 @@ def get_personality_explanation(personality_type):
 personality_types = ['E','N', 'T', 'J']
 
 def predict(text):
+    print("TEXT RECEIVEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD : ",text)
     print('Predicting...')
 
     analyzer = SentimentIntensityAnalyzer()
@@ -245,6 +241,7 @@ def predict(text):
 
     pred=[]
     features = prep(text)
+    print("Number of features in input data:", features.shape[1])
     print('Going into model...')
     for personality_type in personality_types:
 
@@ -315,14 +312,10 @@ def predict(text):
 
     return {"prediction": result, "sentiment": sentiment, "emotion": emotion_df}
 
-
-
-
 import pickle
 
 with open('result_df.pkl', 'rb') as file:
     result_df = pickle.load(file)
-
 
 
 
@@ -336,6 +329,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    print("AT INDEX PAGEEE")
     return render_template("index.html")
 
 
@@ -351,6 +345,7 @@ def response():
     if request.method == "POST":
         print(" B E F O R E   C A L L I N G   P R E D I C T")
         snippet = request.form["fsnippet"]
+        print("AT RESPONSE FINCTION RECEIVED TEXT ",snippet)
         prediction= predict(snippet)
         output = prediction['prediction']
 
@@ -363,7 +358,6 @@ def response():
         print("sentiment_data :",sentiment_data)
         highlighted_circless = generate_highlighted_circles(output)
         personality_explanation = get_personality_explanation(output)
-
 
     return render_template("response.html", predicted=output, emotion_data=emotion_data, result=prediction, string=snippet,highlighted_circles=highlighted_circless,personality_explanation=personality_explanation)
 

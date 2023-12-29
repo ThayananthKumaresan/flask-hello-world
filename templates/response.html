@@ -172,6 +172,7 @@ https://cdn.jsdelivr.net/npm/chartjs-chart-graph@4.2.7/build/index.umd.min.js
                     <canvas id="sentimentChart" width="400" height="400"></canvas>
                     <script>
                         <!-- Extract sentiment scores from Flask data -->
+                        console.log( {{ result['sentiment']['pos_sentiment'] }})
                         var posSentiment = {{ result['sentiment']['pos_sentiment'] }};
                         var negSentiment = {{ result['sentiment']['neg_sentiment'] }};
                         var neuSentiment = {{ result['sentiment']['neu_sentiment'] }};
