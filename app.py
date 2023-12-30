@@ -53,13 +53,14 @@ def cleaning_text(text):
     # Removing words that are 1 to 2 characters long
     text = re.sub(r'\b\w{1,2}\b', '', text)
 
-    # Remove very short or long words
-    text = re.sub(r'(\b\w{0,3})?\b', '', text)
-    text = re.sub(r'(\b\w{30,1000})?\b', '', text)
+    # Replace very short or long words with a placeholder
+    text = re.sub(r'(\b\w{0,3})?\b', 'SHORTWORD', text)
+    text = re.sub(r'(\b\w{30,1000})?\b', 'LONGWORD', text)
     # Remove punctuations
     text = re.sub(re.compile(r"[^a-z\s]"), " ", text)
 
     return text
+
 
 
 def extract_emotion(post):
@@ -245,56 +246,69 @@ def predict(text):
     print('Going into model...')
     for personality_type in personality_types:
 
-        # with open(f'{personality_type}_svm_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_svm_model = pickle.load(f)
+        with open(f'{personality_type}_svm_PREFINAL_model.pkl', 'rb') as f:
+            loaded_svm_model = pickle.load(f)
 
-        # with open(f'{personality_type}_gb_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_gb_model = pickle.load(f)
-
-        # # Load XGBoost model
-        # with open(f'{personality_type}_xgb_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_xgb_model = pickle.load(f)
-
-        # # Load LGBM model
-        # with open(f'{personality_type}_lgbm_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_lgbm_model = pickle.load(f)
-
-
-        with open(f'{personality_type}_gb_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_lr_PREFINAL_model.pkl', 'rb') as f:
+            loaded_lr_model = pickle.load(f)
+            
+        with open(f'{personality_type}_gb_PREFINAL_model.pkl', 'rb') as f:
             loaded_gb_model = pickle.load(f)
 
         # Load XGBoost model
-        with open(f'{personality_type}_xgb_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_xgb_PREFINAL_model.pkl', 'rb') as f:
             loaded_xgb_model = pickle.load(f)
 
         # Load LGBM model
-        with open(f'{personality_type}_lgbm_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_lgbm_PREFINAL_model.pkl', 'rb') as f:
             loaded_lgbm_model = pickle.load(f)
+
+        # Load LGBM model
+        with open(f'{personality_type}_cb_PREFINAL_model.pkl', 'rb') as f:
+            loaded_cb_model = pickle.load(f)
+
+        # Load LGBM model
+        with open(f'{personality_type}_ab_PREFINAL_model.pkl', 'rb') as f:
+            loaded_ab_model = pickle.load(f)
+
+        # Load LGBM model
+        with open(f'{personality_type}_bag_PREFINAL_model.pkl', 'rb') as f:
+            loaded_bag_model = pickle.load(f)
+           
+            
+
+        # with open(f'{personality_type}_gb_model.pkl', 'rb') as f:
+        #     loaded_gb_model = pickle.load(f)
+
+        # # Load XGBoost model
+        # with open(f'{personality_type}_xgb_model.pkl', 'rb') as f:
+        #     loaded_xgb_model = pickle.load(f)
+
+        # # Load LGBM model
+        # with open(f'{personality_type}_lgbm_model.pkl', 'rb') as f:
+        #     loaded_lgbm_model = pickle.load(f)
 
 
 
         # Load meta-model
-        with open(f'{personality_type}_meta_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_PREFINAL_meta_model.pkl', 'rb') as f:
             loaded_meta_model = pickle.load(f)
         
         
-        print("gb_sample_pred")
+        loaded_svm_pred= loaded_svm_model.predict(features)
+        loaded_lr_pred= loaded_lr_model.predict(features)
         gb_sample_pred = loaded_gb_model.predict(features)
-        print("xgb_sample_pred")
         xgb_sample_pred = loaded_xgb_model.predict(features)
-        print("lgbm_sample_pred")
         lgbm_sample_pred = loaded_lgbm_model.predict(features)
-        
-        
-        
-        
-        
-        
+       # loaded_cb_pred= loaded_cb_model.predict(features)
+        loaded_cb_pred = np.array([0])  # You can replace 0 with any fake prediction value for your testing
+        loaded_ab_pred = loaded_ab_model.predict(features)
+        loaded_bag_pred= loaded_bag_model.predict(features)
         
         
         
         # Stack predictions
-        stacked_sample_predictions = np.column_stack((gb_sample_pred, xgb_sample_pred, lgbm_sample_pred))
+        stacked_sample_predictions = np.column_stack((loaded_cb_pred,loaded_svm_pred,loaded_lr_pred, gb_sample_pred, xgb_sample_pred, lgbm_sample_pred,loaded_ab_pred,loaded_bag_pred ))
 
         # Make prediction using meta-model
         print("meta_model_sample_pred")       
@@ -316,6 +330,7 @@ import pickle
 
 with open('result_df.pkl', 'rb') as file:
     result_df = pickle.load(file)
+
 
 
 
