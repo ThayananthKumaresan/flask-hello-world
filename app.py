@@ -125,7 +125,6 @@ def prep (text):
     print('prep...')
 
     text_cleaned= cleaning_text(text)
-    print('CLEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANED TEXT...',text_cleaned)
     extracted_features = extract_features_from_text(text_cleaned)
     return extracted_features
 
@@ -227,7 +226,6 @@ def get_personality_explanation(personality_type):
 personality_types = ['E','N', 'T', 'J']
 
 def predict(text):
-    print("TEXT RECEIVEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD : ",text)
     print('Predicting...')
 
     analyzer = SentimentIntensityAnalyzer()
