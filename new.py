@@ -244,73 +244,69 @@ def predict(text):
     print('Going into model...')
     for personality_type in personality_types:
 
-        # with open(f'{personality_type}_svm_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_svm_model = pickle.load(f)
+        with open(f'{personality_type}_svm_PREFINAL_model.pkl', 'rb') as f:
+            loaded_svm_model = pickle.load(f)
 
-        # with open(f'{personality_type}_lr_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_lr_model = pickle.load(f)
+        with open(f'{personality_type}_lr_PREFINAL_model.pkl', 'rb') as f:
+            loaded_lr_model = pickle.load(f)
             
-        # with open(f'{personality_type}_gb_PREFINAL_model.pkl', 'rb') as f:
+        with open(f'{personality_type}_gb_PREFINAL_model.pkl', 'rb') as f:
+            loaded_gb_model = pickle.load(f)
+
+        # Load XGBoost model
+        with open(f'{personality_type}_xgb_PREFINAL_model.pkl', 'rb') as f:
+            loaded_xgb_model = pickle.load(f)
+
+        # Load LGBM model
+        with open(f'{personality_type}_lgbm_PREFINAL_model.pkl', 'rb') as f:
+            loaded_lgbm_model = pickle.load(f)
+
+        # Load LGBM model
+        with open(f'{personality_type}_cb_PREFINAL_model.pkl', 'rb') as f:
+            loaded_cb_model = pickle.load(f)
+
+        # Load LGBM model
+        with open(f'{personality_type}_ab_PREFINAL_model.pkl', 'rb') as f:
+            loaded_ab_model = pickle.load(f)
+
+        # Load LGBM model
+        with open(f'{personality_type}_bag_PREFINAL_model.pkl', 'rb') as f:
+            loaded_bag_model = pickle.load(f)
+           
+            
+
+        # with open(f'{personality_type}_gb_model.pkl', 'rb') as f:
         #     loaded_gb_model = pickle.load(f)
 
         # # Load XGBoost model
-        # with open(f'{personality_type}_xgb_PREFINAL_model.pkl', 'rb') as f:
+        # with open(f'{personality_type}_xgb_model.pkl', 'rb') as f:
         #     loaded_xgb_model = pickle.load(f)
 
         # # Load LGBM model
-        # with open(f'{personality_type}_lgbm_PREFINAL_model.pkl', 'rb') as f:
+        # with open(f'{personality_type}_lgbm_model.pkl', 'rb') as f:
         #     loaded_lgbm_model = pickle.load(f)
 
-        # # Load LGBM model
-        # with open(f'{personality_type}_cb_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_cb_model = pickle.load(f)
-
-        # # Load LGBM model
-        # with open(f'{personality_type}_ab_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_ab_model = pickle.load(f)
-
-        # # Load LGBM model
-        # with open(f'{personality_type}_bag_PREFINAL_model.pkl', 'rb') as f:
-        #     loaded_bag_model = pickle.load(f)
-           
-            
-    # Load GB model
-        with open(f'{personality_type}_gb_model.pkl', 'rb') as f:
-            loaded_gb_model = pickle.load(f)
-
-    # Load XGBoost model
-        with open(f'{personality_type}_xgb_model.pkl', 'rb') as f:
-            loaded_xgb_model = pickle.load(f)
-
-    # Load LGBM model
-        with open(f'{personality_type}_lgbm_model.pkl', 'rb') as f:
-            loaded_lgbm_model = pickle.load(f)
 
 
-    # Load meta-model
-        with open(f'{personality_type}_meta_model.pkl', 'rb') as f:
+        # Load meta-model
+        with open(f'{personality_type}_PREFINAL_meta_model.pkl', 'rb') as f:
             loaded_meta_model = pickle.load(f)
         
         
-        # # Load meta-model
-        # with open(f'{personality_type}_PREFINAL_meta_model.pkl', 'rb') as f:
-        #     loaded_meta_model = pickle.load(f)
-        
-        
-        # loaded_svm_pred= loaded_svm_model.predict(features)
-        # loaded_lr_pred= loaded_lr_model.predict(features)
+        loaded_svm_pred= loaded_svm_model.predict(features)
+        loaded_lr_pred= loaded_lr_model.predict(features)
         gb_sample_pred = loaded_gb_model.predict(features)
         xgb_sample_pred = loaded_xgb_model.predict(features)
         lgbm_sample_pred = loaded_lgbm_model.predict(features)
-    #    # loaded_cb_pred= loaded_cb_model.predict(features)
-    #     loaded_cb_pred = np.array([0])  # You can replace 0 with any fake prediction value for your testing
-    #     loaded_ab_pred = loaded_ab_model.predict(features)
-    #     loaded_bag_pred= loaded_bag_model.predict(features)
+       # loaded_cb_pred= loaded_cb_model.predict(features)
+        loaded_cb_pred = np.array([0])  # You can replace 0 with any fake prediction value for your testing
+        loaded_ab_pred = loaded_ab_model.predict(features)
+        loaded_bag_pred= loaded_bag_model.predict(features)
         
         
         
         # Stack predictions
-        stacked_sample_predictions = np.column_stack((gb_sample_pred, xgb_sample_pred, lgbm_sample_pred ))
+        stacked_sample_predictions = np.column_stack((loaded_cb_pred,loaded_svm_pred,loaded_lr_pred, gb_sample_pred, xgb_sample_pred, lgbm_sample_pred,loaded_ab_pred,loaded_bag_pred ))
 
         # Make prediction using meta-model
         print("meta_model_sample_pred")       
